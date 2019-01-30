@@ -5,7 +5,7 @@ def key_password = System.getenv("KEYPASS")
 def store_file = System.getenv("STOREFILE")
 def store_password = System.getenv("STOREPASS")
 
-if (store_file == null) {
+if (key_alias == null) {
     def keystorePropertiesFile = file("keystore.properties")
     def keystoreProperties = new Properties()
     keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
