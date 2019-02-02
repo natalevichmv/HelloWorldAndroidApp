@@ -1,9 +1,36 @@
 apply plugin: 'com.android.application'
 
+def key_alias, key_password, store_file, store_password
+
+try {
+    def keystorePropertiesFile = file("keystore.properties")
+    def keystoreProperties = new Properties()
+    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+
+    key_alias = keystoreProperties['keyAlias']
+    key_password = keystoreProperties['keyPassword']
+    store_file = keystoreProperties['storeFile']
+    store_password = keystoreProperties['storePassword']
+}
+catch (FileNotFoundException ignored) {
+    key_alias = System.getenv("KEYALIAS")
+    key_password = System.getenv("KEYPASS")
+    store_file = System.getenv("STOREFILE")
+    store_password = System.getenv("STOREPASS")
+}
+
 android {
+    signingConfigs {
+        config {
+            keyAlias key_alias
+            keyPassword key_password
+            storeFile rootProject.file(store_file)
+            storePassword store_password
+        }
+    }
     compileSdkVersion 28
     defaultConfig {
-        applicationId "com.example.helloworldapp"
+        applicationId "com.example.natalevichmvapp"
         minSdkVersion 22
         targetSdkVersion 28
         versionCode 1
@@ -14,12 +41,13 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
         }
     }
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.android.support:appcompat-v7:28.0.0'
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
     implementation 'com.android.support:design:28.0.0'
