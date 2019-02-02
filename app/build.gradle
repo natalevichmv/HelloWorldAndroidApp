@@ -1,11 +1,8 @@
 apply plugin: 'com.android.application'
 
-def key_alias = System.getenv("KEYALIAS")
-def key_password = System.getenv("KEYPASS")
-def store_file = System.getenv("STOREFILE")
-def store_password = System.getenv("STOREPASS")
+def key_alias, key_password, store_file, store_password
 
-if (key_alias == null) {
+try {
     def keystorePropertiesFile = file("keystore.properties")
     def keystoreProperties = new Properties()
     keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
@@ -14,6 +11,12 @@ if (key_alias == null) {
     key_password = keystoreProperties['keyPassword']
     store_file = keystoreProperties['storeFile']
     store_password = keystoreProperties['storePassword']
+}
+catch (FileNotFoundException ignored) {
+    key_alias = System.getenv("KEYALIAS")
+    key_password = System.getenv("KEYPASS")
+    store_file = System.getenv("STOREFILE")
+    store_password = System.getenv("STOREPASS")
 }
 
 android {
