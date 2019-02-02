@@ -1,4 +1,4 @@
-package com.example.helloworldapp;
+package com.example.natalevichmvapp;
 
 import org.junit.Test;
 

@@ -1,4 +1,4 @@
-package com.example.helloworldapp;
+package com.example.natalevichmvapp;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
