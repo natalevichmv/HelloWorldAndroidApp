@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">HelloWorldApp</string>
     <string name="action_settings">Settings</string>
+    <string name="string_app_name">NatalevichMVApp</string>
+    <string name="img_greeting">Greeting</string>
+    <string name="string_github_link"><![CDATA[<a href=\'https://github.com/natalevichmv/HelloWorldAndroidApp\'>Github</a>]]></string>
 </resources>
