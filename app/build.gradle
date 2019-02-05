@@ -57,6 +57,7 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.config
+            ext.betaDistributionGroupAliases = 'NatalevichMV - Yandex Mobile Dev Course'
         }
     }
 }
